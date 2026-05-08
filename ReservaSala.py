@@ -21,6 +21,7 @@ class ReservaSala(Servicio):
             if not horas:
                 raise ReservaSalaError("La cantidad de horas no puede estar vacía")
             
+            super().__init__(cliente)
             self.__cliente = cliente
             self.__sala = sala
             self.__horas = horas
