@@ -1,14 +1,16 @@
+from abc import ABC, abstractmethod
 from Cliente import Cliente
 
 class ServicioError(Exception):
     pass
 
-class Servicio:
+class Servicio(ABC):
+
     def __init__(self, cliente):
         try:
             if not isinstance(cliente, Cliente):
                 raise ServicioError("El cliente no es válido")
-            
+
             self.__cliente = cliente
 
         except ServicioError as e:
@@ -18,3 +20,11 @@ class Servicio:
 
     def get_cliente(self):
         return self.__cliente
+
+    @abstractmethod
+    def calcular_costo(self):
+        pass
+
+    @abstractmethod
+    def descripcion_servicio(self):
+        pass
